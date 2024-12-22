@@ -25,7 +25,7 @@ HexStore is a responsive eCommerce website template built using HTML, CSS, and J
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/username/hexstore.git
+   git clone https://github.com/usmanriaz-209/hexstore.git
    ```
 
 2. Navigate to the project directory:
