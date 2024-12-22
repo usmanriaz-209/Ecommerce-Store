@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HexStore</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #232f3e;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        header nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 16px;
+        }
+
+        header nav a:hover {
+            text-decoration: underline;
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+        }
+
+        .search-bar input[type="text"] {
+            padding: 10px;
+            width: 300px;
+            border: none;
+            border-radius: 4px 0 0 4px;
+            outline: none;
+        }
+
+        .search-bar button {
+            padding: 10px;
+            background-color: #febd69;
+            border: none;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+        }
+
+        .search-bar button:hover {
+            background-color: #f3a847;
+        }
+
+        /* Product List Styles */
+        .product-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .product-item {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+            text-align: center;
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .product-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .product-item img {
+            width: 100%;
+            height: auto;
+        }
+
+        .product-item h3 {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+
+        .product-item p {
+            color: #555;
+            font-size: 16px;
+            margin: 5px 0;
+        }
+
+        .product-item button {
+            background-color: #232f3e;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            margin: 10px 0;
+        }
+
+        .product-item button:hover {
+            background-color: #3a4553;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #232f3e;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        /* Cart Indicator */
+        .cart-indicator {
+            background-color: #febd69;
+            color: #232f3e;
+            font-weight: bold;
+            border-radius: 50%;
+            padding: 5px 10px;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>HexStore</h1>
+        </div>
+        <div class="search-bar">
+            <input id="searchInput" type="text" placeholder="Search for products">
+            <button onclick="filterProducts()">Search</button>
+        </div>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">Categories</a>
+            <a href="#">Cart <span id="cartCount" class="cart-indicator">0</span></a>
+            <a href="#">Account</a>
+        </nav>
+    </header>
+    <main>
+        <h2 style="text-align: center; padding: 20px;">HexStore Products</h2>
+        <div id="productList" class="product-list">
+            <!-- Product 1 -->
+            <div class="product-item">
+                <img src="BB1.jpeg" alt="Black TrackSuit">
+                <h3>Black TrackSuit</h3>
+                <p>5000 PKR</p>
+                <button onclick="addToCart('Black TrackSuit')">Add to Cart</button>
+            </div>
+            <!-- Product 2 -->
+            <div class="product-item">
+                <img src="BL2.jpeg" alt="Navy TrackSuit">
+                <h3>Navy TrackSuit</h3>
+                <p>5000 PKR</p>
+                <button onclick="addToCart('Navy TrackSuit')">Add to Cart</button>
+            </div>
+            <!-- Product 3 -->
+            <div class="product-item">
+                <img src="M3.jpeg" alt="Maroon TrackSuit">
+                <h3>Maroon TrackSuit</h3>
+                <p>5000 PKR</p>
+                <button onclick="addToCart('Maroon TrackSuit')">Add to Cart</button>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 HexStore. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        let cartCount = 0;
+
+        // Filter Products Functionality
+        function filterProducts() {
+            const input = document.getElementById('searchInput').value.toLowerCase();
+            const products = document.querySelectorAll('.product-item');
+            
+            products.forEach(product => {
+                const title = product.querySelector('h3').textContent.toLowerCase();
+                if (title.includes(input)) {
+                    product.style.display = '';
+                } else {
+                    product.style.display = 'none';
+                }
+            });
+        }
+
+        // Add to Cart Functionality
+        function addToCart(productName) {
+            cartCount++;
+            document.getElementById('cartCount').textContent = cartCount;
+            alert(`${productName} has been added to your cart!`);
+        }
+    </script>
+</body>
+</html>
